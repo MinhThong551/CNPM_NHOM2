@@ -35,6 +35,7 @@ public class MessageDao extends GenericDao<Message> implements MessageDaoInterfa
 		return listMessages;
 	}
 
+	//6. Lưu tin nhắn vào database
 	@Override
 	public void saveMessage(Message message) {
 		StringBuilder sql = new StringBuilder();

@@ -29,7 +29,7 @@ public class UserDao extends GenericDao<User> implements UserDaoInterface {
 		List<User> users = query(sql.toString(), new UserMapper(), userName, password);
 		return users.isEmpty() ? null : users.get(0);
 	}
-
+// 2. Truy vấn database
 	@Override
 	public List<User> findFriends(String userName) {
 		StringBuilder sql = new StringBuilder("select distinct u2.username, u2.avatar, u2.gender");
@@ -55,7 +55,7 @@ public class UserDao extends GenericDao<User> implements UserDaoInterface {
 			save(sql.toString(), password, gender, avatar, username);
 		}
 	}
-
+// 2. Truy vấn database
 	@Override
 	public List<User> findFriendsByKeyWord(String userName, String keyWord) {
 		StringBuilder sql = new StringBuilder("select u2.username, u2.avatar, u2.gender");

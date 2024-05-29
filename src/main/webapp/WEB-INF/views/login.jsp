@@ -16,7 +16,7 @@
 <body>
 	<div class="container">
 		<div class="form-container">
-			<h2 class="form-title">Star Messenger</h2>
+			<h2 class="form-title">Hamorny Messenger</h2>
 			<div class="tab-control">
 				<h3 class="active tab-control-btn login">Sign in</h3>
 				<h3 class="tab-control-btn register">

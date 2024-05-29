@@ -68,7 +68,7 @@ public class ChatService extends ChatServiceAbstract {
 			}
 		});
 	}
-
+// 2. Xử lí tin nhắn gửi
 	@Override
 	public void sendMessageToOneUser(MessageDTO message, Queue<FileDTO> fileDTOs) {
 		if (!message.getType().equals("text")) {
@@ -82,6 +82,7 @@ public class ChatService extends ChatServiceAbstract {
 			Long groupId = message.getGroupId();
 			String url = FileServiceAbstract.rootURL + sender + "/" + fileName;
 			try {
+				// 3. Nếu điều kiện thỏa thì sẽ sendObject(message)
 				FileOutputStream fileOutputStream = new FileOutputStream(uploadedFile, false);
 				FileDTO newFileDTO = new FileDTO(fileName, message.getType(), fileOutputStream, sender, receiver,
 						groupId, url);
@@ -95,6 +96,7 @@ public class ChatService extends ChatServiceAbstract {
 						.filter(chatWebsocket -> chatWebsocket.getUsername().equals(message.getReceiver()))
 						.forEach(chatWebsocket -> {
 							try {
+								// 3. Nếu điều kiện thỏa thì sẽ sendObject(message)
 								chatWebsocket.getSession().getBasicRemote().sendObject(message);
 							} catch (IOException | EncodeException e) {
 								e.printStackTrace();

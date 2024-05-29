@@ -55,10 +55,12 @@ public class MessageService implements MessageServiceInterface {
 		});
 		return listMessageDTOs;
 	}
-
+// 5. Tiến hành lưu tin nhắn
 	@Override
 	public void saveMessage(MessageDTO messageDTO) {
+		// Xử lí tin nhắn, convert từ json sang đối tượng message để lưu vào database
 		Message messageEntity = convertToEntity(messageDTO);
+		// Lưu tin nhắn sau khi đã convert
 		messageDaoInterface.saveMessage(messageEntity);
 	}
 
