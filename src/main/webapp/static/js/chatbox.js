@@ -665,7 +665,7 @@ function renderFile(typeFile) {
 
 	deleteAttach = document.querySelectorAll(".delete-attach");
 }
-
+// Sau khi người dùng nhập nội dung vào và gửi tin nhắn
 function sendMessage(e) {
 	e.preventDefault();
 
@@ -860,6 +860,7 @@ function searchFriendByKeyword(keyword) {
 		.then(function(data) {
 			return data.json();
 		})
+		// Hiện thị kết quả
 		.then(data => {
 
 			document.querySelector(".left-side .list-user").innerHTML = "";
@@ -891,6 +892,7 @@ function searchMemberByKeyword(ele) {
 		.then(function(data) {
 			return data.json();
 		})
+		// Hiện thị kết quả
 		.then(data => {
 
 			document.querySelector(".add-member-body .list-user ul").innerHTML = "";
@@ -928,6 +930,7 @@ function searchGroupByKeyword(value) {
 		.then(function(data) {
 			return data.json();
 		})
+		// Hiện thị kết quả
 		.then(data => {
 
 			document.querySelector(".left-side .list-user").innerHTML = "";
@@ -961,6 +964,7 @@ function searchGroupByKeyword(value) {
 		});
 }
 
+// Hàm được gọi sau khi người dùng nhập vào thanh tìm kiếm trên giao diện
 function searchUser(ele) {
 	if (typeChat == "user") {
 		searchFriendByKeyword(ele.value);

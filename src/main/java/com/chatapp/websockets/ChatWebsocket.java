@@ -27,7 +27,6 @@ public class ChatWebsocket {
 	private Session session;
 	private String username;
 	private Queue<FileDTO> fileDTOs = new LinkedList<>();
-
 	private ChatServiceAbstract chatService = ChatService.getInstance();
 	private MessageServiceInterface messageService = MessageService.getInstance();
 
@@ -46,10 +45,11 @@ public class ChatWebsocket {
 	public void onError(Session session, Throwable throwable) {
 
 	}
-
+	// 1. Hàm này được gọi khi người dùng đã bấm gửi
 	@OnMessage
 	public void onMessage(MessageDTO message, Session session) {
 		chatService.sendMessageToOneUser(message, fileDTOs);
+		// 4. Sau khi xử lí xong thì sẽ lưu tin nhắn vào database
 		messageService.saveMessage(message);
 	}
 

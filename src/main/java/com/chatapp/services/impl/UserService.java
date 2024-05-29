@@ -69,12 +69,13 @@ public class UserService implements UserServiceInterface {
 		return user;
 	}
 
+	// 1. Sau khi người dùng nhập vào thanh tìm kiếm, hệ thống sẽ tiến hành tìm kiếm user trong database 
 	@Override
 	public List<User> findFriends(String username) {
 		List<User> friends = userDaoInterface.findFriends(username);
 		return friends;
 	}
-
+	// 1. Sau khi người dùng nhập vào thanh tìm kiếm, hệ thống sẽ tiến hành tìm kiếm user trong database 
 	public List<User> findFriendsByKeyWord(String username, String keyword) {
 		List<User> friends = userDaoInterface.findFriendsByKeyWord(username, keyword);
 		return friends;
