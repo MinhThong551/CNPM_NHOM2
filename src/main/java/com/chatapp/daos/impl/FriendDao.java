@@ -7,7 +7,7 @@ import com.chatapp.models.Friend;
 
 public class FriendDao extends GenericDao<Friend> {
 
-	// Lưu thông tin bạn bè, chấp nhận hoặc gửi yêu cầu kết bạn
+	//6. Lưu thông tin bạn bè, chấp nhận hoặc gửi yêu cầu kết bạn
 	public void saveFriend(boolean isAccept, Friend friend) {
 		String sender = friend.getSender();
 		String receiver = friend.getReceiver();
@@ -38,7 +38,7 @@ public class FriendDao extends GenericDao<Friend> {
 		}
 	}
 
-	// Tìm bạn bè theo người gửi và người nhận
+	//2. Tìm bạn bè theo người gửi và người nhận
 	public Friend findFriend(String sender, String receiver) {
 		StringBuilder sql = new StringBuilder(
 				"select sender,receiver, owner, status from friends where sender=? and receiver=?");

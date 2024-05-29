@@ -40,7 +40,7 @@ public abstract class FileServiceAbstract {
             tag = "<a href=" + url + ">" + message + "</a>";
         }
         return tag;
-    }
+    } 
 
     // Kích thước buffer mặc định cho việc gửi file
     protected static final int DEFAULT_BUFFER_SIZE = 10240;

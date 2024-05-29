@@ -18,7 +18,7 @@ public class FileController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	// Tạo một instance của FileServiceAbstract, được triển khai bởi FileService
-	private FileServiceAbstract fileService = FileService.getInstace();
+	private FileServiceAbstract fileService = FileService.getInstance();
 
 	public FileController() {
 		super();
