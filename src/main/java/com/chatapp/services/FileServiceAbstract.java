@@ -8,28 +8,49 @@ import javax.servlet.http.HttpServletResponse;
 
 public abstract class FileServiceAbstract {
 
-	public static Path rootLocation = Paths.get("archive");
+    // Đường dẫn gốc cho lưu trữ file
+    public static Path rootLocation = Paths.get("archive");
 
-	public static String rootURL = "";
+    // URL gốc cho truy cập file
+    public static String rootURL = "";
 
-	public static String toTagHtml(String type, String username, String message) {
-		String tag = "";
-		String url = rootURL + username + "/" + message;
-		if (type.startsWith("audio")) {
-			tag = "<audio controls>\r\n" + "  <source src=\"" + url + "\" type=\"" + type + "\">\r\n" + "</audio>";
-		} else if (type.startsWith("video")) {
-			tag = "<video width=\"400\" controls>\r\n" + "  <source src=\"" + url + "\" type=\"" + type + "\">\r\n"
-					+ "</video>";
-		} else if (type.startsWith("image")) {
-			tag = "<img src=\"" + url + "\" alt=\"\">";
-		}
-		else {
-			tag = "<a href="+url+">"+message+"</a>";
-		}
-		return tag;
-	}
+    /**
+     * Chuyển đổi loại file thành thẻ HTML tương ứng để hiển thị trên giao diện người dùng.
+     * 
+     * @param type     Loại file
+     * @param username Tên người dùng
+     * @param message  Tên file hoặc nội dung file
+     * @return Thẻ HTML tương ứng với loại file
+     */
+    public static String toTagHtml(String type, String username, String message) {
+        String tag = "";
+        String url = rootURL + username + "/" + message;
+        if (type.startsWith("audio")) {
+            // Nếu là audio
+            tag = "<audio controls>\r\n" + "  <source src=\"" + url + "\" type=\"" + type + "\">\r\n" + "</audio>";
+        } else if (type.startsWith("video")) {
+            // Nếu là video
+            tag = "<video width=\"400\" controls>\r\n" + "  <source src=\"" + url + "\" type=\"" + type + "\">\r\n"
+                    + "</video>";
+        } else if (type.startsWith("image")) {
+            // Nếu là hình ảnh
+            tag = "<img src=\"" + url + "\" alt=\"\">";
+        } else {
+            // Nếu là file khác
+            tag = "<a href=" + url + ">" + message + "</a>";
+        }
+        return tag;
+    }
 
-	protected static final int DEFAULT_BUFFER_SIZE = 10240;
+    // Kích thước buffer mặc định cho việc gửi file
+    protected static final int DEFAULT_BUFFER_SIZE = 10240;
 
-	public abstract void handleStreamFileToClient(File file, String contentType, HttpServletResponse response);
+    /**
+     * Phương thức trừu tượng để xử lý việc gửi file đến client.
+     * 
+     * @param file         File cần gửi
+     * @param contentType Loại nội dung của file
+     * @param response     HttpServletResponse
+     */
+    public abstract void handleStreamFileToClient(File file, String contentType, HttpServletResponse response);
 }

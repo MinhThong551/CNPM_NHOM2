@@ -20,12 +20,14 @@ import com.chatapp.services.impl.ConversationService;
 public class ConversationController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	// Tạo một instance của ConversationServiceInterface, được triển khai bởi ConversationService
 	private ConversationServiceInterface conversationServiceInterface = ConversationService.getInstance();
 
 	public ConversationController() {
 		super();
 	}
 
+	// Xử lý các yêu cầu GET
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String conversationId = request.getParameter("conversationId");
@@ -42,6 +44,7 @@ public class ConversationController extends HttpServlet {
 		}
 	}
 
+	// Xử lý các yêu cầu POST
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 

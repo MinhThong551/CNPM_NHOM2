@@ -15,30 +15,37 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @WebServlet("/friend-rest-controller")
 public class FriendRestController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public FriendRestController() {
-		super();
-	}
+    public FriendRestController() {
+        super();
+    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		String sender = request.getParameter("sender");
-		String receiver = request.getParameter("receiver");
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // Lấy thông tin người gửi và người nhận từ request
+        String sender = request.getParameter("sender");
+        String receiver = request.getParameter("receiver");
 
-		Friend friend = new FriendDao().findFriend(sender, receiver);
-		if(friend == null) {
-			friend = new Friend("any", "any", "any", false);
-		}
-		ObjectMapper objectMapper = new ObjectMapper();
-		String json = objectMapper.writeValueAsString(friend);
+        // Tìm kiếm thông tin về bạn bè trong cơ sở dữ liệu
+        Friend friend = new FriendDao().findFriend(sender, receiver);
+        
+        // Nếu không tìm thấy bạn bè, tạo một đối tượng Friend mặc định
+        if (friend == null) {
+            friend = new Friend("any", "any", "any", false);
+        }
 
-		response.setContentType("application/json");
-		response.setCharacterEncoding("UTF-8");
+        // Chuyển đổi đối tượng Friend thành định dạng JSON
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString(friend);
 
-		PrintWriter printWriter = response.getWriter();
-		printWriter.print(json);
-		printWriter.flush();
+        // Thiết lập loại và mã hóa ký tự cho phản hồi HTTP
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
 
-	}
+        // Gửi dữ liệu JSON trả về cho client
+        PrintWriter printWriter = response.getWriter();
+        printWriter.print(json);
+        printWriter.flush();
+    }
 }
